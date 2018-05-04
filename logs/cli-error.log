@@ -1,0 +1,116 @@
+2018-05-02 05:16:29 Error: [PDOException] SQLSTATE[HY000] [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ in C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php on line 48
+Stack Trace:
+#0 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php(48): PDO->__construct('mysql:host=loca...', 'root', '', Array)
+#1 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=loca...', Array)
+#2 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Dialect\MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(42): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Connection.php(369): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Connection.php(388): Cake\Database\Connection->getSchemaCollection()
+#8 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(1034): Cake\Database\Connection->schemaCollection()
+#9 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(988): Bake\Shell\Task\ModelTask->_getAllTables()
+#10 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(1003): Bake\Shell\Task\ModelTask->listAll()
+#11 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ControllerTask.php(258): Bake\Shell\Task\ModelTask->listUnskipped()
+#12 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ControllerTask.php(61): Bake\Shell\Task\ControllerTask->listAll()
+#13 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(507): Bake\Shell\Task\ControllerTask->main()
+#14 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(500): Cake\Console\Shell->runCommand(Array, false, Array)
+#15 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\CommandRunner.php(141): Cake\Console\Shell->runCommand(Array, true)
+#16 C:\xampp\htdocs\Decanatura\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#17 {main}
+
+
+2018-05-02 05:22:32 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'grupo01decanatura.demostracion_cake_bake' doesn't exist in C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 131
+Stack Trace:
+#0 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(97): Cake\Database\Schema\Collection->_reflect('Column', 'demostracion_ca...', Array, Object(Cake\Database\Schema\TableSchema))
+#1 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(63): Cake\Database\Schema\Collection->describe('demostracion_ca...', Array)
+#2 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\ORM\Table.php(532): Cake\Database\Schema\CachedCollection->describe('demostracion_ca...')
+#3 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\ORM\Table.php(653): Cake\ORM\Table->getSchema()
+#4 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php(288): Cake\ORM\Table->getPrimaryKey()
+#5 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php(142): Bake\Shell\Task\TemplateTask->_loadController()
+#6 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(507): Bake\Shell\Task\TemplateTask->main('DemostracionCak...')
+#7 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(500): Cake\Console\Shell->runCommand(Array, false, Array)
+#8 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\CommandRunner.php(141): Cake\Console\Shell->runCommand(Array, true)
+#9 C:\xampp\htdocs\Decanatura\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#10 {main}
+
+
+2018-05-02 15:17:56 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'grupo01decanatura.demo_ruben' doesn't exist in C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 131
+Stack Trace:
+#0 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(97): Cake\Database\Schema\Collection->_reflect('Column', 'demo_ruben', Array, Object(Cake\Database\Schema\TableSchema))
+#1 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(63): Cake\Database\Schema\Collection->describe('demo_ruben', Array)
+#2 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\ORM\Table.php(532): Cake\Database\Schema\CachedCollection->describe('demo_ruben')
+#3 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\ORM\Table.php(653): Cake\ORM\Table->getSchema()
+#4 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php(288): Cake\ORM\Table->getPrimaryKey()
+#5 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php(142): Bake\Shell\Task\TemplateTask->_loadController()
+#6 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(507): Bake\Shell\Task\TemplateTask->main('DemoRuben')
+#7 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(500): Cake\Console\Shell->runCommand(Array, false, Array)
+#8 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\CommandRunner.php(141): Cake\Console\Shell->runCommand(Array, true)
+#9 C:\xampp\htdocs\Decanatura\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#10 {main}
+
+
+2018-05-02 15:54:28 Error: [PDOException] SQLSTATE[HY000] [1045] Access denied for user 'ecci'@'163.178.104.118' (using password: YES) in C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php on line 48
+Stack Trace:
+#0 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php(48): PDO->__construct('mysql:host=deca...', 'ecci@decanatura', 'Gaby123', Array)
+#1 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=deca...', Array)
+#2 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Dialect\MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(42): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Connection.php(369): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Connection.php(388): Cake\Database\Connection->getSchemaCollection()
+#8 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(1034): Cake\Database\Connection->schemaCollection()
+#9 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(988): Bake\Shell\Task\ModelTask->_getAllTables()
+#10 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(1003): Bake\Shell\Task\ModelTask->listAll()
+#11 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(93): Bake\Shell\Task\ModelTask->listUnskipped()
+#12 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(507): Bake\Shell\Task\ModelTask->main()
+#13 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(500): Cake\Console\Shell->runCommand(Array, false, Array)
+#14 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\CommandRunner.php(141): Cake\Console\Shell->runCommand(Array, true)
+#15 C:\xampp\htdocs\Decanatura\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#16 {main}
+
+
+2018-05-02 16:02:11 Error: [PDOException] SQLSTATE[HY000] [1045] Access denied for user 'ecci'@'163.178.104.118' (using password: YES) in C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php on line 48
+Stack Trace:
+#0 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php(48): PDO->__construct('mysql:host=deca...', 'ecci@decanatura', 'Gaby123', Array)
+#1 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=deca...', Array)
+#2 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Dialect\MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(42): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Connection.php(369): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Connection.php(388): Cake\Database\Connection->getSchemaCollection()
+#8 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(1034): Cake\Database\Connection->schemaCollection()
+#9 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(988): Bake\Shell\Task\ModelTask->_getAllTables()
+#10 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(1003): Bake\Shell\Task\ModelTask->listAll()
+#11 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(93): Bake\Shell\Task\ModelTask->listUnskipped()
+#12 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(507): Bake\Shell\Task\ModelTask->main()
+#13 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(500): Cake\Console\Shell->runCommand(Array, false, Array)
+#14 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\CommandRunner.php(141): Cake\Console\Shell->runCommand(Array, true)
+#15 C:\xampp\htdocs\Decanatura\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#16 {main}
+
+
+2018-05-02 16:03:28 Error: [PDOException] SQLSTATE[HY000] [1045] Access denied for user 'ecci'@'163.178.104.118' (using password: YES) in C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php on line 48
+Stack Trace:
+#0 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php(48): PDO->__construct('mysql:host=deca...', 'ecci@decanatura', 'Gaby123', Array)
+#1 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=deca...', Array)
+#2 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Dialect\MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(42): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Connection.php(369): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Database\Connection.php(388): Cake\Database\Connection->getSchemaCollection()
+#8 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(1034): Cake\Database\Connection->schemaCollection()
+#9 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(988): Bake\Shell\Task\ModelTask->_getAllTables()
+#10 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(1003): Bake\Shell\Task\ModelTask->listAll()
+#11 C:\xampp\htdocs\Decanatura\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(93): Bake\Shell\Task\ModelTask->listUnskipped()
+#12 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(507): Bake\Shell\Task\ModelTask->main()
+#13 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\Shell.php(500): Cake\Console\Shell->runCommand(Array, false, Array)
+#14 C:\xampp\htdocs\Decanatura\vendor\cakephp\cakephp\src\Console\CommandRunner.php(141): Cake\Console\Shell->runCommand(Array, true)
+#15 C:\xampp\htdocs\Decanatura\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#16 {main}
+
+
