@@ -10,6 +10,8 @@
     <?= $this->Form->create($asset, ['type' => 'file']) ?>
 </div>
 <br>
+
+<div class="row">
     
 <div class="col-md-4 col-xs-12 col-lg-4 col-sm-12">
     <?php echo $this->Form->input('plaque',array('type' => 'text','label'=>'Placa', 'class' => 'form-control')); ?>   
@@ -30,23 +32,29 @@
 <br>
 
 <div class="col-md-4 col-xs-12 col-lg-4 col-sm-12">
-	<?php use App\Controller\AssetsController ?>
+    <?php use App\Controller\AssetsController ?>
 
     <?php
-		$filterMod = "Apple";
-		$options = AssetsController::storeModel($assets, $filterMod);
-		echo $this->Form->control('model' , array('options' => $options,'label'=>'Modelo', 'class' => 'form-control')); 
-	?>
+        $filterMod = "Apple";
+        $options = AssetsController::storeModel($assets, $filterMod);
+        echo $this->Form->control('model' , array('options' => $options,'label'=>'Modelo', 'class' => 'form-control')); 
+    ?>
 </div>
 
+
 <br>
+
 
 <div class="col-md-4 col-xs-12 col-lg-4 col-sm-12">
     <?php echo $this->Form->control('series', array('label'=>'Serie', 'class' => 'form-control')); ?>
 </div>
 
+
+</div>
 <br>
 
+
+<div class="row">
 <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
     <?php echo $this->Form->control('description', array('label'=>'Descripcion', 'class' => 'form-control', 'rows' => '3')); ?>
 </div>
@@ -70,6 +78,11 @@
 </div>
 
 <br>
+
+
+</div>
+
+<div class="row">
 
 <div class="col-md-4 col-xs-12 col-lg-4 col-sm-12">    
     <?php echo $this->Form->control('sub_location', array('label'=>'Sub-ubicacion', 'class' => 'form-control')); ?>
@@ -100,6 +113,8 @@
 
 <div class="col-md-4 col-xs-12 col-lg-4 col-sm-12">
     <?php echo $this->Form->input('image',['label'=>'Imagen', 'type' => 'file', 'class' => 'form-control-file']); ?>
+</div>
+
 </div>
 
 <br>

@@ -10,6 +10,64 @@ use App\Controller\AppController;
  */
 class ModelsController extends AppController
 {
+	
+	public function isAuthorized($user)
+    {
+
+        $this->Roles = $this->loadModel('Roles');
+        $this->Permissions = $this->loadModel('Permissions');
+        $this->RolesPermissions = $this->loadModel('RolesPermissions');
+
+        $allowI = false;
+        $allowM = false;
+        $allowE = false;
+        $allowC = false;
+        
+        $query = $this->Roles->find('all', array(
+                    'conditions' => array(
+                        'id' => $user['id_rol']
+                    )
+                ))->contain(['Permissions']);
+
+        foreach ($query as $roles) {
+            $rls = $roles['permissions'];
+            foreach ($rls as $item){
+                //$permisos[(int)$item['id']] = 1;
+                if($item['nombre'] == 'Insertar Usuarios'){
+                    $allowI = true;
+                }else if($item['nombre'] == 'Modificar Usuarios'){
+                    $allowM = true;
+                }else if($item['nombre'] == 'Eliminar Usuarios'){
+                    $allowE = true;
+                }else if($item['nombre'] == 'Consultar Usuarios'){
+                    $allowC = true;
+                }
+            }
+        } 
+
+
+        $this->set('allowI',$allowI);
+        $this->set('allowM',$allowM);
+        $this->set('allowE',$allowE);
+        $this->set('allowC',$allowC);
+
+
+        if ($this->request->getParam('action') == 'add'){
+            return $allowI;
+        }else if($this->request->getParam('action') == 'edit'){
+            return $allowM;
+        }else if($this->request->getParam('action') == 'delete'){
+            return $allowE;
+        }else if($this->request->getParam('action') == 'view'){
+            return $allowC;
+        }else{
+            return $allowC;
+        }
+
+
+    }
+	
+	
     /**
      * Index method
      *
@@ -50,11 +108,29 @@ class ModelsController extends AppController
 			$random = uniqid();
             $model->id = $random;
             $model = $this->Models->patchEntity($model, $this->request->getData());
-            if ($this->Models->save($model)) {
-                $this->Flash->success(__('El modelo fue guardado exitosamente.'));
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('El modelo no se pudo guardar, por favor intente nuevamente.'));
+			
+			if ($_POST['new_Brand'] == '') {
+				if ($this->Models->save($model)) {
+					$this->Flash->success(__('El modelo fue guardado exitosamente.'));
+					return $this->redirect(['action' => 'index']);
+				}
+				$this->Flash->error(__('El modelo no se pudo guardar, por favor intente nuevamente.'));
+				
+			} else {
+				$brand = $this->Models->Brands->newEntity();
+				$random_id = uniqid();
+				$brand->id = $random_id;
+				$brand->name = $_POST['new_Brand'];
+
+				if ($this->Models->Brands->save($brand)) {
+					$model->id_brand = $brand->id;
+					if ($this->Models->save($model)) {
+						$this->Flash->success(__('El modelo y la marca fueron guardados exitosamente.'));
+						return $this->redirect(['action' => 'index']);
+					}
+					$this->Flash->error(__('El modelo y la marca no se pudieron guardar, por favor intente nuevamente.'));
+				}
+			}
         }
 		
 		$brands = $this->Models->Brands->find('list', ['limit' => 200]);
@@ -75,11 +151,29 @@ class ModelsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $model = $this->Models->patchEntity($model, $this->request->getData());
-            if ($this->Models->save($model)) {
-                $this->Flash->success(__('El modelo fue guardado exitosamente.'));
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('El modelo no se pudo guardar, por favor intente nuevamente.'));
+			
+            if ($_POST['new_Brand'] == '') {
+				if ($this->Models->save($model)) {
+					$this->Flash->success(__('El modelo fue guardado exitosamente.'));
+					return $this->redirect(['action' => 'index']);
+				}
+				$this->Flash->error(__('El modelo no se pudo guardar, por favor intente nuevamente.'));
+				
+			} else {
+				$brand = $this->Models->Brands->newEntity();
+				$random_id = uniqid();
+				$brand->id = $random_id;
+				$brand->name = $_POST['new_Brand'];
+
+				if ($this->Models->Brands->save($brand)) {
+					$model->id_brand = $brand->id;
+					if ($this->Models->save($model)) {
+						$this->Flash->success(__('El modelo y la marca fueron guardados exitosamente.'));
+						return $this->redirect(['action' => 'index']);
+					}
+					$this->Flash->error(__('El modelo y la marca no se pudieron guardar, por favor intente nuevamente.'));
+				}
+			}
         }
         
 		$brands = $this->Models->Brands->find('list', ['limit' => 200]);
@@ -98,9 +192,9 @@ class ModelsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $model = $this->Models->get($id);
         if ($this->Models->delete($model)) {
-            $this->Flash->success(__('The model has been deleted.'));
+            $this->Flash->success(__('El modelo de activo se ha eliminado exitosamente.'));
         } else {
-            $this->Flash->error(__('The model could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El modelo de activo no pudo ser eliminado. Por favor, intente de nuevo.'));
         }
         return $this->redirect(['action' => 'index']);
     }

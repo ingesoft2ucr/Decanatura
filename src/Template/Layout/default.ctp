@@ -112,6 +112,15 @@ $cakeDescription = 'Control de Activos';
             );
             ?>
           </li>
+		  
+		  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Modelos de activo">
+            <?=$this->Html->link(
+              $this->Html->tag('i','' , array('class' => 'fa fa-users')).$this->Html->tag('span', ' Modelos de activo', array('class' => 'nav-link-text')),array('controller' => 'Models','action' => 'index'),
+              array('class' => 'nav-link',
+                'escape'=> false)
+            );
+            ?>
+          </li>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tipos de activos">
             <?=$this->Html->link(

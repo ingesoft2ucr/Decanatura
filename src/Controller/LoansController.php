@@ -143,6 +143,7 @@ class LoansController extends AppController
                         ->select(['assets.plaque', 'assets.brand', 'assets.model', 'assets.series'])
                         ->where(['assets.state' => "Disponible"])
                         ->where(['assets.lendable' => true])
+                        ->where(['assets.deleted' => false])
                         ->toList();
 
         $size = count($query);

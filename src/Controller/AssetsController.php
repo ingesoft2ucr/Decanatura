@@ -155,6 +155,26 @@ class AssetsController extends AppController
         $locations = $this->Assets->Locations->find('list', ['limit' => 200]);
         $this->set(compact('asset', 'types', 'users', 'locations'));
     }
+
+    /**
+     * Restaura un activo desactivado
+     */
+    public function restore($plaque){
+        $asset = $this->Assets->get($plaque);
+        $asset->deleted = false;
+        $asset->state = 'Disponible';
+        $fecha = date('Y-m-d H:i:s');
+        $asset->modified = $fecha;
+
+        if ($this->Assets->save($asset)) {
+            $this->Flash->success(__('El activo fue activado exitosamente.'));
+            return $this->redirect(['action' => 'index']);
+        }
+        $this->Flash->error(__('El activo no se pudo activar correctamente.'));
+        return $this->redirect(['action' => 'index']);
+    }
+
+
     /**
      * Elimina solo logicamente los activos de la base de datos
      * 
@@ -166,9 +186,11 @@ class AssetsController extends AppController
         
         if($asset->deletable){
             if($this->Assets->delete($asset)){
-                return 1;
+                $this->Flash->success(__('El activo fue eliminado exitosamente.'));
+                return $this->redirect(['action' => 'index']);
             }
-            return 0;
+            $this->Flash->error(__('El activo no se pudo eliminar correctamente.'));
+            return $this->redirect(['action' => 'index']);
         }
         
         $fecha = date('Y-m-d H:i:s');
@@ -177,10 +199,13 @@ class AssetsController extends AppController
         $asset->modified = $fecha;
         
         if ($this->Assets->save($asset)) {
-            return 2;
+            $this->Flash->success(__('El activo fue desactivado exitosamente.'));
+            return $this->redirect(['action' => 'index']);
         }
-        return 0;
+        $this->Flash->error(__('El activo no se pudo desactivar correctamente.'));
+        return $this->redirect(['action' => 'index']);
     }
+    
     /**
      * Método para eliminar un activo del sistema
      */
@@ -193,19 +218,6 @@ class AssetsController extends AppController
         }
     }
     
-    public static function storeModel($activos = null, $marca = null)
-    {   
-        $models = array(); 
-        //$marca = "Apple";
-       
-        foreach ($activos as $filterModel) {
-            if ($filterModel->brand == $marca && !in_array($filterModel->model, $models)){
-                array_push($models, $filterModel->model);
-            }
-        }
-        return $models;
-        
-    }
 
 
     /**

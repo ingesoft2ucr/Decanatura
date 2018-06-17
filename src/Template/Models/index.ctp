@@ -26,7 +26,7 @@
                             <td class="actions">
                                 <?= $this->Html->link($this->Html->tag('i', '', array('class' => 'fa fa-eye')), ['action' => 'view', $model->id], array('escape'=> false)) ?>
                                 <?= $this->Html->link($this->Html->tag('i', '', array('class' => 'fa fa-edit')), ['action' => 'edit', $model->id],  array('escape'=> false)) ?>
-                                <?= $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash')), ['action' => 'delete', $model->id],  ['escape'=> false,'confirm' => __('¿Está seguro que desea eliminar este modelo? # {0}?', $model->id)]) ?>
+                                <?= $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash')), ['action' => 'delete', $model->id],  ['escape'=> false,'confirm' => __('¿Está seguro que desea eliminar este modelo? {0}?', $model->name)]) ?>
                             </td>
                             
                             <td><?= h($model->name) ?></td>
