@@ -76,17 +76,17 @@ class TransfersTable extends Table
         $validator
             ->scalar('functionary_recib')
             ->maxLength('functionary_recib', 100)
-            ->allowEmpty('functionary_recib');
+            ->notEmpty('functionary_recib');
 
         $validator
             ->scalar('identification_recib')
             ->maxLength('identification_recib', 10)
-            ->allowEmpty('identification_recib');
+            ->notEmpty('identification_recib');
 
         $validator
             ->scalar('Acade_Unit_recib')
             ->maxLength('Acade_Unit_recib', 30)
-            ->allowEmpty('Acade_Unit_recib');
+            ->notEmpty('Acade_Unit_recib');
 
         $validator
             ->scalar('path')

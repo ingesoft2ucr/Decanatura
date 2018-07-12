@@ -160,7 +160,7 @@ class TypesController extends AppController
             $this->Types->delete($type); 
              $this->Flash->success(__('El tipo de activo se ha eliminado exitosamente'));
         } catch (\PDOException $e) {
-     $this->Flash->error(__('El tipo de activo no se pudo eliminar. Puede deberse a que tiene activos asociados'));
+     $this->Flash->error(__('El tipo de activo no se pudo eliminar. Puede deberse a que tiene activos asociados.'));
         }
 
         return $this->redirect(['action' => 'index']);

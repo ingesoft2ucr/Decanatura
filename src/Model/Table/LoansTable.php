@@ -34,6 +34,23 @@ class LoansTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('Josegonzalez/Upload.Upload', [
+
+            'file_solicitud' => [
+                'fields' => [
+                    'dir' => 'file_solicitud_dir',
+                    'size' => 'file_solicitud_size',
+                    'type' => 'file_solicitud_type',
+                ],
+                'path' => 'webroot{DS}files{DS}{model}{DS}{field}{DS}{field-value:unique_id}{DS}',
+                'nameCallback' => function ($table, $entity, $data, $field, $settings) {
+                    return strtolower($data['name']);
+                },
+
+                'keepFilesOnDelete' => false
+            ],
+        ]);
+
         $this->belongsTo('Users', [
             'foreignKey' => 'id_responsables'
         ]);
@@ -74,6 +91,22 @@ class LoansTable extends Table
             ->scalar('estado')
             ->maxLength('estado', 255)
             ->allowEmpty('estado');
+
+        $validator
+            ->maxLength('file_devolucion', 255)
+            ->allowEmpty('file_devolucion');
+
+        $validator
+            ->maxLength('file_devolucion_dir', 255)
+            ->allowEmpty('file_devolucion_dir');
+
+        $validator
+            ->maxLength('file_solicitud', 255)
+            ->allowEmpty('file_solicitud');
+
+        $validator
+            ->maxLength('file_solicitud_dir', 255)
+            ->allowEmpty('file_solicitud_dir');
 
         return $validator;
     }

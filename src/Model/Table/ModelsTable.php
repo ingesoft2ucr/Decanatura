@@ -61,7 +61,7 @@ class ModelsTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
-            ->allowEmpty('name');
+            ->notEmpty('name');
 
         $validator
             ->scalar('id_brand')

@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Asset[]|\Cake\Collection\CollectionInterface $assets
+ * @var \App\Model\Entity\Asset[]|\Cake\Collection\CollectionInterface $loans
  */
 ?>
 
@@ -25,10 +25,10 @@
                 <thead>
                     <tr>
                         <th scope="col" class="actions"><?= __('') ?></th>             
-                        <th scope="col"><?= $this->Paginator->sort('Responsable') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Estado') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Fecha de inicio') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Fecha de devolución') ?></th>
+                        <th scope="col">Responsable</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Fecha de inicio</th>
+                        <th scope="col">Fecha de devolución</th>
                     </tr>
                 </thead>
                 <tbody>

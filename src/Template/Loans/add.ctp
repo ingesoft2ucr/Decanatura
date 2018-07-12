@@ -197,10 +197,6 @@
                 }
        } );
     } );
-    $(document).ready(function() 
-    {
-        $('#assets-transfers-grid').DataTable( {} );
-    } );
     $("document").ready(
     function() {
       $('#acept').click( function()
@@ -211,6 +207,7 @@
         });
         }
     );
+    
 /** función optenida de http://bytutorial.com/blogs/jquery/jquery-get-selected-checkboxes */
     function getValueUsingClass(){
     /* declare an checkbox array */

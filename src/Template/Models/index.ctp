@@ -14,10 +14,10 @@
             <table id="models-grid"  class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" class="actions"><?= __('') ?></th>        
-                        <th scope="col"><?= $this->Paginator->sort('Nombre') ?></th>        
-                        <th scope="col"><?= $this->Paginator->sort('Marca') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Tipo') ?></th>
+                        <th scope="col" class="actions">Acciones</th>        
+                        <th scope="col">Nombre</th>        
+                        <th scope="col">Marca</th>
+                        <th scope="col">Tipo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,7 +66,7 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-        $('#models-grid').DataTable( {
+        var table = $('#models-grid').DataTable( {
             dom: 'Bfrtip',
                 buttons: [
                 'copyHtml5',

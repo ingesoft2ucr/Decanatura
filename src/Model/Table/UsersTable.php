@@ -33,6 +33,10 @@ class UsersTable extends Table
         $this->setTable('users');
         $this->setDisplayField('username');
         $this->setPrimaryKey('id');
+
+        $this->hasMany('ActivityLogs', [
+            'foreignKey' => 'idUser',
+        ]);
     }
 
     /**

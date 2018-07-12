@@ -132,10 +132,12 @@ class LocationsController extends AppController
             $location->location_id = $tmpId;
 
             if ($this->Locations->save($location)) {
+                AppController::insertLog($location['location_id'], TRUE);
                 $this->Flash->success(__('Ubicación guardada.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+            AppController::insertLog($location['location_id'], FALSE);
             $this->Flash->error(__('Ocurrió un error.'));
         }
         $this->set(compact('location'));
@@ -156,10 +158,12 @@ class LocationsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $location = $this->Locations->patchEntity($location, $this->request->getData());
             if ($this->Locations->save($location)) {
+                AppController::insertLog($location['location_id'], TRUE);
                 $this->Flash->success(__('Ubicación guardada.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+            AppController::insertLog($location['location_id'], FALSE);
             $this->Flash->error(__('Ocurrió un error.'));
         }
         $this->set(compact('location'));
@@ -188,10 +192,12 @@ class LocationsController extends AppController
         if($tmpId == null){
 
             if ($this->Locations->delete($location)) {
+                AppController::insertLog($location['location_id'], TRUE);
                 $this->Flash->success(__('Se eliminó la ubicación.'));
             } 
         }
         else {
+            AppController::insertLog($location['location_id'], FALSE);
                 $this->Flash->error(__('La ubicación no se puede eliminar, ya que esisten activos asignados a ella.'));
             }
 

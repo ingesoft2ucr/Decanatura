@@ -96,10 +96,12 @@ class BrandsController extends AppController
             $brand = $this->Brands->patchEntity($brand, $this->request->getData());
             
             if ($this->Brands->save($brand)) {
+                AppController::insertLog($brand['id'], TRUE);
                 $this->Flash->success(__('La marca fue guardada exitosamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+            AppController::insertLog($brand['id'], FALSE);
             $this->Flash->error(__('La marca no se pudo guardar, por favor intente nuevamente.'));
         }
         $this->set(compact('brand'));
@@ -120,10 +122,12 @@ class BrandsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $brand = $this->Brands->patchEntity($brand, $this->request->getData());
             if ($this->Brands->save($brand)) {
+                AppController::insertLog($brand['id'], TRUE);
             $this->Flash->success(__('La marca fue modificada exitosamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+            AppController::insertLog($brand['id'], FALSE);
             $this->Flash->error(__('La marca no se pudo modificar, por favor intente nuevamente.'));
         }
         $this->set(compact('brand'));
@@ -144,12 +148,15 @@ class BrandsController extends AppController
         $brand = $this->Brands->get($id);
         try{
             $this->Brands->delete($brand); 
+            AppController::insertLog($brand['id'], TRUE);
              $this->Flash->success(__('La marca se ha eliminado exitosamente'));
         } catch (\PDOException $e) {
+            AppController::insertLog($brand['id'], FALSE);
      $this->Flash->error(__('La marca no se pudo eliminar. Puede deberse a que tiene modelos asociados a ella'));
         }
         
         return $this->redirect(['action' => 'index']);
     }
 }
+
 

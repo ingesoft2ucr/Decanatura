@@ -30,6 +30,10 @@ class Loan extends Entity
         'fecha_inicio' => true,
         'fecha_devolucion' => true,
         'observaciones' => true,
-        'estado' => true
+        'estado' => true,
+        'file_solicitud' => true,
+        'file_solicitud_dir' => true,
+        'file_devolucion' => true,
+        'file_devolucion_dir' => true,
     ];
 }
