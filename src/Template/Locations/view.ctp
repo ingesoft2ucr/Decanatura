@@ -39,4 +39,8 @@
 
 <?= $this->Html->link(__('Cancelar'), ['controller'=> 'Locations', 'action' => 'index'], ['class' => 'btn btn-primary']) ?>
 <?= $this->Html->link(__('Modificar'), ['controller'=> 'Locations', 'action' => 'edit', $location->location_id], ['class' => 'btn btn-primary']) ?>
-<?= $this->Form->postLink(__('Eliminar'), ['controller'=> 'Locations', 'action' => 'delete', $location->location_id], ['class' => 'btn btn-primary', 'confirm' => __('Seguro que desea eliminar la Ubicación # {0}?', $location->location_id)]) ?>
+
+
+<?= $this->Form->postLink(__('Eliminar'), ['controller'=> 'Locations', 'action' => 'delete', $location->location_id], ['hidden' => 'true','class' => 'btn btn-primary', 'confirm' => __('Seguro que desea eliminar la Ubicación: "{0}"?', $location->nombre)]) ?>
+
+<?= $this->Form->postlink(('Eliminar'), ['action' => 'delete', $location->location_id], ['class' => 'btn btn-primary','escape' => false, 'confirm' => __('Seguro que desea eliminar la Ubicación: "{0}"?', $location->nombre)]) ?>

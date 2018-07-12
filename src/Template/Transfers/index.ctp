@@ -18,10 +18,10 @@
     <table id='transfers-grid' class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col" class="actions"><?= __('Acciones') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Nº traslado') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Fecha') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Recibe') ?></th>
+                <th scope="col" class="actions">Acciones</th>
+                <th scope="col">Nº traslado</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Recibe</th>
             </tr>
         </thead>
         <tbody>

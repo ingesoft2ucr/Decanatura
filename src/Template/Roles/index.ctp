@@ -15,8 +15,8 @@
             <table id="roles-grid"  class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col"><?= 'Acciones' ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Nombre') ?></th>
+                        <th scope="col">Acciones</th>
+                        <th scope="col">Nombre</th>
                     </tr>
                 </thead>
                 <tbody>

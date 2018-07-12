@@ -101,12 +101,17 @@ use Cake\Routing\Router;
                 <div class="row" >
                     <label class="label-t">Unidad académica: </label>
                    
-                    <?php echo '<input type="text" class="form-control col-sm-6"  value="' . htmlspecialchars($Unidad) . '">'; ?>
+                    <?php echo '<input type="text" readonly="readonly" class="form-control col-sm-6"  value="' . htmlspecialchars($Unidad) . '">'; ?>
                 </div>
                 <br>
                 <div class="row">
-                    <label class="label-t">Funcionario1: </label>
-                    <?php echo '<input type="text" name="functionary" class="form-control col-sm-6"  value="' . htmlspecialchars($transfer->functionary) . '">'; ?>
+                    <label class="label-t">Funcionario: </label>
+                    <?php 
+                    echo $this->Form->select('functionary',
+                      $users,
+                      ['empty' => '(Escoja un usuario)','class'=>'form-control', 'style'=>'width:220px;']
+                    );
+                    ?>
                 </div>
                 <br>
                 <div class="row">
@@ -167,25 +172,26 @@ use Cake\Routing\Router;
                     <td><?= h($a->model) ?></td>
                     <td><?= h($a->series) ?></td>
                     <td><?= h($a->state) ?></td>
-                    <td>
-                        <?php
+                    <?php
                         // If que verifica si el checkbox debe ir activado o no
                         
                         if(in_array($a->plaque, array_column($result, 'plaque'),true) )
                             {
+                                echo '<td data-order="1">';
                                 echo $this->Form->checkbox('assets_id',
                                 ['value'=>htmlspecialchars($a->plaque),'checked', "class"=>"chk" ]
                                 );
+                                echo '</td>';
                             }
                         else
                             {
+                                echo '<td data-order="0">';
                                 echo $this->Form->checkbox('assets_id',
                                 ['value'=>htmlspecialchars($a->plaque),"class"=>"chk"]
                                 );
+                                echo '</td >';
                             }
-                        ?>
-                        
-                    </td>
+                    ?>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -247,9 +253,25 @@ use Cake\Routing\Router;
                         "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
                         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                     }
-                }
+                },
+                "order": [[ 5, "desc" ]]
         } );
-    } );
+        // Listen to change event from checkbox to trigger re-sorting
+        $('#assets-transfers-grid input[type="checkbox"]').on('change', function() {
+        // Update data-sort on closest <td>
+        $(this).closest('td').attr('data-order', this.checked ? 1 : 0);
+    
+        // Store row reference so we can reset its data
+        var $tr = $(this).closest('tr');
+    
+        // Force resorting
+        equipmentTable
+        .row($tr)
+        .invalidate()
+        .order([ 5, 'desc' ])
+        .draw();
+        } );
+} );
 
     $("document").ready(
     function() {

@@ -1,6 +1,6 @@
 <?php
 namespace App\Controller;
-use App\Controller\AppController;
+use App\Controller\AAppController;
 /**
  * Models Controller
  *
@@ -111,25 +111,46 @@ class ModelsController extends AppController
 			
 			if ($_POST['new_Brand'] == '') {
 				if ($this->Models->save($model)) {
+                    AppController::insertLog($model['id'], TRUE);
 					$this->Flash->success(__('El modelo fue guardado exitosamente.'));
 					return $this->redirect(['action' => 'index']);
 				}
+                AppController::insertLog($model['id'], FALSE);
 				$this->Flash->error(__('El modelo no se pudo guardar, por favor intente nuevamente.'));
 				
 			} else {
-				$brand = $this->Models->Brands->newEntity();
-				$random_id = uniqid();
-				$brand->id = $random_id;
-				$brand->name = $_POST['new_Brand'];
 
-				if ($this->Models->Brands->save($brand)) {
-					$model->id_brand = $brand->id;
-					if ($this->Models->save($model)) {
-						$this->Flash->success(__('El modelo y la marca fueron guardados exitosamente.'));
-						return $this->redirect(['action' => 'index']);
-					}
-					$this->Flash->error(__('El modelo y la marca no se pudieron guardar, por favor intente nuevamente.'));
-				}
+                $brand = $this->Models->Brands->newEntity();
+                $random_id = uniqid();
+                $brand->id = $random_id;
+                $brand->name = $_POST['new_Brand'];
+
+                $allBrands = $this->Models->Brands->find('all');
+                foreach ($allBrands as $b) {
+                   if ($b->name == $brand->name){
+                        $brand->id = $b->id;
+                        $brand->name = null;
+                   }
+                }
+				
+                if($brand->name == null){
+                    $model->id_brand = $brand->id;
+                    if ($this->Models->save($model)) {
+                        $this->Flash->success(__('El modelo y la marca fueron guardados exitosamente.'));
+                        return $this->redirect(['action' => 'index']);
+                    }
+                    $this->Flash->error(__('El modelo y la marca no se pudieron guardar, por favor intente nuevamente.'));
+                }
+                else {
+                    if ($this->Models->Brands->save($brand)) {
+                        $model->id_brand = $brand->id;
+                        if ($this->Models->save($model)) {
+                            $this->Flash->success(__('El modelo y la marca fueron guardados exitosamente.'));
+                            return $this->redirect(['action' => 'index']);
+                        }
+                        $this->Flash->error(__('El modelo y la marca no se pudieron guardar, por favor intente nuevamente.'));
+                    }
+                }
 			}
         }
 		
@@ -154,9 +175,11 @@ class ModelsController extends AppController
 			
             if ($_POST['new_Brand'] == '') {
 				if ($this->Models->save($model)) {
+                    AppController::insertLog($model['id'], TRUE);
 					$this->Flash->success(__('El modelo fue modificado exitosamente.'));
 					return $this->redirect(['action' => 'index']);
 				}
+                AppController::insertLog($model['id'], FALSE);
 				$this->Flash->error(__('El modelo no se pudo modificar, por favor intente nuevamente.'));
 				
 			} else {
@@ -192,10 +215,13 @@ class ModelsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $model = $this->Models->get($id);
         if ($this->Models->delete($model)) {
+            AppController::insertLog($model['id'], TRUE);
             $this->Flash->success(__('El modelo de activo se ha eliminado exitosamente.'));
         } else {
+            AppController::insertLog($model['id'], FALSE);
             $this->Flash->error(__('El modelo de activo no pudo ser eliminado. Por favor, intente de nuevo.'));
         }
         return $this->redirect(['action' => 'index']);
     }
 }
+

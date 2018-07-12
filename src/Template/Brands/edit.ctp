@@ -12,7 +12,7 @@
           border-color: #0099FF;
           float: right;
           margin-left: 10px;
-        }
+    }
 	
 	label {
           text-align:left;
@@ -24,8 +24,7 @@
           text-align:left;
           margin-right: 20px;
 		  border-color: transparent;
-        }
- }
+    }
 </style> 
 
 <div class="locations form large-9 medium-8 columns content">

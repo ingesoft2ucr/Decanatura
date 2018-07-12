@@ -8,11 +8,11 @@
             <table id="locations-grid" class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" class="actions"><?= __('Acciones') ?></th>
+                        <th scope="col" class="actions">Acciones</th>
 
-                        <th scope="col"><?= $this->Paginator->sort('Ubicación') ?></th>
+                        <th scope="col">Ubicación</th>
 
-                        <th scope="col"><?= $this->Paginator->sort('Descripción') ?></th>
+                        <th scope="col">Descripción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +29,7 @@
                                 <?php endif; ?>
                                 
                                 <?php if($allowE) : ?>
-                                    <?= $this->Form->postlink($this->Html->tag('i', '', array('class' => 'fa fa-trash')), ['action' => 'delete', $location->location_id], ['escape' => false, 'confirm' => __('Seguro que desea eliminar la Ubicación # {0}?', $location->location_id)]) ?>
+                                    <?= $this->Form->postlink($this->Html->tag('i', '', array('class' => 'fa fa-trash')), ['action' => 'delete', $location->location_id], ['escape' => false, 'confirm' => __('Seguro que desea eliminar la Ubicación: "{0}"?', $location->nombre)]) ?>
                                 <?php endif; ?>
 
                             </td>

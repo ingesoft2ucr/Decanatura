@@ -16,15 +16,15 @@
                 <thead>
                     <tr>
                         <th scope="col" class="actions"><?= __('') ?></th>        
-                        <th scope="col"><?= $this->Paginator->sort('Placa') ?></th>        
-                        <th scope="col"><?= $this->Paginator->sort('Marca') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Modelo') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Serie') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Descripción') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Estado') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Asignado') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Ubicación') ?></th>                
-                        <th scope="col"><?= $this->Paginator->sort('Año') ?></th>
+                        <th scope="col">Placa</th>        
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Serie</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Asignado</th>
+                        <th scope="col">Ubicación</th>                
+                        <th scope="col">Año</th>
                         
                     </tr>
                 </thead>

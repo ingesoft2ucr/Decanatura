@@ -148,9 +148,11 @@ class RolesController extends AppController
         if ($this->request->is('post')) {
             $rol = $this->Roles->patchEntity($rol, $this->request->getData());
             if ($this->Roles->save($rol)) {
+                AppController::insertLog($rol['id'], TRUE);
                 $this->Flash->success(__('El rol ha sido guardado.'));
                 return $this->redirect(['action' => 'index']);
             }
+            AppController::insertLog($rol['id'], FALSE);
             $this->Flash->error(__('El rol no ha podido ser guardado. Porfavor, intente de nuevo.'));
         }
         $this->set(compact('rol'));
@@ -170,9 +172,11 @@ class RolesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $rol = $this->Roles->patchEntity($rol, $this->request->getData());
             if ($this->Roles->save($rol)) {
+                AppController::insertLog($rol['id'], TRUE);
                 $this->Flash->success(__('El rol ha sido guardado.'));
                 return $this->redirect(['action' => 'index']);
             }
+            AppController::insertLog($rol['id'], FALSE);
             $this->Flash->error(__('El rol no ha podido ser guardado. Porfavor, intente de nuevo.'));
         }
         $this->set(compact('rol'));
@@ -189,8 +193,10 @@ class RolesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $rol = $this->Roles->get($id);
         if ($this->Roles->delete($rol)) {
+            AppController::insertLog($rol['id'], TRUE);
             $this->Flash->success(__('El rol ha sido eliminado.'));
         } else {
+            AppController::insertLog($rol['id'], FALSE);
             $this->Flash->error(__('El rol no ha podido ser eliminado. Porfavor, intente de nuevo.'));
         }
         return $this->redirect(['action' => 'index']);

@@ -15,8 +15,8 @@
                 
                 <thead>
                     <tr>
-                        <th scope="col" class="actions"><?= __('') ?></th>  
-                        <th scope="col"><?= $this->Paginator->sort('Nombre') ?></th>
+                        <th scope="col" class="actions">Acciones</th>  
+                        <th scope="col">Nombre</th>
                     </tr>
                 </thead>
 

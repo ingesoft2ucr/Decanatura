@@ -14,11 +14,11 @@
        <table id="technicalReports-grid" class="table table-striped">
         <thead>
             <tr>
-                <th scope="col" class="actions"><?= __('Acciones') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Identificador') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Fecha') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Recomendación') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Estado') ?></th>
+                <th scope="col" class="actions">Acciones</th>
+                <th scope="col">Identificador</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Recomendación</th>
+                <th scope="col">Estado</th>
             </tr>
         </thead>
         <tbody>

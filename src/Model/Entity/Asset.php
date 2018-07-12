@@ -1,8 +1,6 @@
 <?php
 namespace App\Model\Entity;
-
 use Cake\ORM\Entity;
-
 /**
  * Asset Entity
  *
@@ -30,7 +28,6 @@ use Cake\ORM\Entity;
  */
 class Asset extends Entity
 {
-
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -58,14 +55,12 @@ class Asset extends Entity
         'lendable' => true,
         'observations' => true,
         'image_dir' => true,
-        'type' => true,
         'user' => true,
         'location' => true,
         'unique_id' => true,
         'deleted' => true,
         'deletable' => true,
-        'brand' => true
+        'brand' => true,
+		'type_id' => true
     ];
 }
-
-

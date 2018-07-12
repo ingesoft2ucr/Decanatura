@@ -96,6 +96,7 @@
 ?>
 
 <div class="residues form large-9 medium-8 columns content">
+    <!-- El segundo parametro es para utilizar los validadores de cakephp-->
     <?= $this->Form->create($residue,['novalidate','onsubmit'=>'return validateCheck()']) ?>
     <fieldset>
         <legend><?= __('Insertar acta de desecho') ?></legend>

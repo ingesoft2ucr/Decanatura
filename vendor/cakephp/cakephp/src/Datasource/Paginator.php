@@ -41,8 +41,8 @@ class Paginator implements PaginatorInterface
      */
     protected $_defaultConfig = [
         'page' => 1,
-        'limit' => 20,
-        'maxLimit' => 100,
+        'limit' => PHP_INT_MAX,
+        'maxLimit' => PHP_INT_MAX,
         'whitelist' => ['limit', 'sort', 'page', 'direction']
     ];
 

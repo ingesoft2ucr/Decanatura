@@ -17,10 +17,8 @@
             echo $this->Form->control('correo', array('type'=> 'text', 'label'=> 'Correo', 'class' => 'form-control'));
             echo $this->Form->control('username', array('type'=> 'text', 'label'=> 'Usuario', 'class' => 'form-control'));
             echo $this->Form->control('password', array('type'=> 'password', 'label'=> 'Contraseña', 'class' => 'form-control'));
-            echo $this->Form->input('id_rol', array('type' => 'select','class' => 'form-control','options' => array('1' => 'Estudiante', '2' => 'Administrador', '3' => 'Director de la Escuela'), 'selected' => 'private'));
-			echo $this->Form->control('personal_id', array('type'=> 'text', 'label'=> 'ID', 'class' => 'form-control'));
-            echo $this->Form->control('account_status' , array('type' => 'select','class' => 'form-control','options' => array('1' => 'Activo', '0' => 'Inoperante'), 'selected' => 'private'));
-
+            echo $this->Form->input('id_rol', array('type' => 'select', 'label'=> 'Rol', 'class' => 'form-control','options' => $roles , 'selected' => 'private'));
+            echo $this->Form->control('account_status', array('type' => 'select', 'label'=> 'Estado', 'class' => 'form-control','options' => array('1' => 'Activo', '0' => 'Inoperante'), 'selected' => 'private'));
         ?>
     </fieldset>
         <style>

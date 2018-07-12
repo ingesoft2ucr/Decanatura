@@ -41,7 +41,7 @@
 
 		<div class='row'>
 			<div class="col-md-4 col-xs-12 col-lg-5 col-sm-12">
-				<label> Nombre: </label> <br>
+				<label> Marca: </label> <br>
 				<?php echo '<input type="text" class="form-control col-sm-6" readonly="readonly" value="' . htmlspecialchars($model->brand->name) . '">'; ?>
 			</div>
 			<br>
@@ -56,8 +56,11 @@
 <div class="col-12 text-right">
 
 <?= $this->Html->link(__('Cancelar'), ['action' => 'index'], ['class' => 'btn btn-primary']) ?>
-<?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $model->id], ['class' => 'btn btn-primary', 'confirm' => __('Seguro que desea eliminar el modelo "{0}" ?', $model->name)]) ?>
 
+<div class="col-12 text-right" hidden>
+	<?= $this->Form->postLink(__('Eliminar2'), ['action' => 'delete', $model->id], ['class' => 'btn btn-primary', 'confirm' => __('Seguro que desea eliminar el modelo "{0}" ?', $model->name)]) ?>
+</div>
+<?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $model->id], ['class' => 'btn btn-primary', 'confirm' => __('Seguro que desea eliminar el modelo "{0}" ?', $model->name)]) ?>
 <?= $this->Html->link(__('Editar'), ['action' => 'edit', $model->id], ['class' => 'btn btn-primary']) ?>
     
 

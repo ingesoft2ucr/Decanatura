@@ -15,11 +15,11 @@ $mysqli = new mysqli('decanatura.mysql.database.azure.com','ecci@decanatura','Ga
             <table id="residues-grid"  class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" class="actions"><?= __('Acciones') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Unidad Custodio') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Fecha') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('Recomendación') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('N° Autorización') ?></th>
+                        <th scope="col" class="actions">Acciones</th>
+                        <th scope="col">Unidad Custodio</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Recomendación</th>
+                        <th scope="col">N° Autorización</th>
                     </tr>
                 </thead>
                 <tbody>

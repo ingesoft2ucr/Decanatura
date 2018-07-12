@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Controller\Component\AuthComponent;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Users Controller
@@ -143,25 +144,23 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $success = TRUE;
         $user = $this->Users->newEntity();
-
         $query = $this->Roles->find('all');
-
         $roles = array();
-
         foreach ($query as $items) {
             $roles[$items['id']] = $items['nombre'];
         }
-
         $this->set('roles', $roles);
-
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
-            
             if ($this->Users->save($user)) {
+                AppController::insertLog($user['nombre'], $success);
                 $this->Flash->success(__('El usuario ha sido agregado.'));
                 return $this->redirect(['action' => 'index']);
             }
+            $success = FALSE;
+            AppController::insertLog($user['nombre'], $success);
             $this->Flash->error(__('El usuario no pudo ser agregado, intente nuevamente'));
         }
         $this->set(compact('user'));
@@ -176,6 +175,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        $success = TRUE;
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -204,14 +204,65 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             
             if ($this->Users->save($user)) {
+                AppController::insertLog($user['nombre'], $success);
                 $this->Flash->success(__('Cambios guardados.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+            $success = FALSE;
+            AppController::insertLog($user['nombre'], $success);
             $this->Flash->error(__('Los cambios no pudieron ser guardados. Por favor vuelva a intentarlo.'));
         }
         $this->set(compact('user'));
     }
+
+
+
+    public function profile($id = null)
+    {
+        $success = TRUE;
+        $user = $this->Users->get($id, [
+            'contain' => []
+        ]);
+
+        //seleccina todos los roles para desplegar
+        $query = $this->Roles->find('all');
+
+        //contiene todos los roles
+        $roles = array();
+
+        //id del rol actual del usuario
+        $rol = '';
+
+        foreach ($query as $items) {
+            $roles[$items['id']] = $items['nombre'];
+            if($items['id'] == $user['id_rol']){
+                $rol = $items['id'];
+            }
+        }
+
+        $this->set('roles', $roles);
+        $this->set('rol', $rol);
+
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            
+            if ($this->Users->save($user)) {
+                AppController::insertLog($user['nombre'], $success);
+                $this->Flash->success(__('Cambios guardados.'));
+
+            }else{
+                $success = FALSE;
+                AppController::insertLog($user['nombre'], $success);
+                $this->Flash->error(__('Los cambios no pudieron ser guardados. Por favor vuelva a intentarlo.')); 
+            }
+            
+        }
+        $this->set(compact('user'));
+    }
+
+
 
     /**
      * Delete method
@@ -222,14 +273,17 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
+        $success = TRUE;
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
+            AppController::insertLog($user['nombre'], $success);
             $this->Flash->success(__('El usuario ha sido borrado.'));
         } else {
+            $success = FALSE;
+            AppController::insertLog($user['nombre'], $success);
             $this->Flash->error(__('El usuario no pudo ser borrado, intente nuevamente'));
         }
-
         return $this->redirect(['action' => 'index']);
     }
 
@@ -241,6 +295,7 @@ class UsersController extends AppController
         $user = $this->Auth->identify();
         if($user){
             $this->Auth->setUser($user);
+            AppController::$this->insertLogin($user['nombre'], TRUE);
             return $this->redirect('/');
         }
         $this->Flash->error(__('Usuario o contaseña inválidos, intente otra vez'));
@@ -248,6 +303,7 @@ class UsersController extends AppController
     }
 
     public function logout(){
+
         return $this->redirect($this->Auth->logout());
     }
 }
